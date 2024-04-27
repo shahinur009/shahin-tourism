@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
     return (
-        <div className="md:pl-[24rem]">
+        <div className="md:pl-[24rem] font-dancing">
             <div className="w-full max-w-md border-2 p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
                 <h2 className="mb-3 text-3xl font-semibold text-center"> Please Register Your Account </h2>
 

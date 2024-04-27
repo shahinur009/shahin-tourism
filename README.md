@@ -7,8 +7,12 @@
 5. Swiper
 6. sweetAlert
 7. react icon
+8. dotenv
 
 * implement 3 packages:
+1. 
+2. 
+3. 
 
 
 * Features
@@ -22,6 +26,7 @@
 8. My List
  
  * Links
- 1. GithubLink: https://github.com/programming-hero-web-course-4/b9a9-real-estate-shahinur009
- 2. FirebaseLink: https://real-state-world.web.app/
+ 1. GithubLink-Server: 
+ 1. GithubLink-Client: 
+ 2. FirebaseLink: 
  

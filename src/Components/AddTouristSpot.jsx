@@ -1,10 +1,18 @@
 import Swal from "sweetalert2";
+import useAuth from "../Provider/useAuth";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const AddTouristSpot = () => {
+    const { user } = useAuth() || {};
+    // const authInfo = useContext(AuthContext)
+
     const handleAddSpot = event => {
         event.preventDefault();
+
         const form = event.target;
-        const email = form.email.value;
+        const email = user.email;
+        // const email= form.email.value;
         const name = form.name.value;
         const image = form.image.value;
         const touristSpotName = form.touristspotname.value;
@@ -22,7 +30,7 @@ const AddTouristSpot = () => {
         // send data to the server
         fetch('http://localhost:5000/addspot', {
             method: 'POST',
-            headers:{
+            headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(newSpot)
@@ -30,14 +38,14 @@ const AddTouristSpot = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                if(data.insertedId){
+                if (data.insertedId) {
                     Swal.fire({
                         position: "top-center",
                         icon: "success",
                         title: "Your Data Add Successfully",
                         showConfirmButton: false,
                         timer: 1500
-                      });
+                    });
                 }
             })
 

@@ -1,15 +1,34 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-
-
+import { useContext, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import useAuth from "../../Provider/useAuth";
+import Swal from "sweetalert2";
+import { ThemeContext } from "../../Provider/ThemeProvider";
 
 
 const Navbar = () => {
-    const [darkMood, setDarkMode] = useState(false);
+    const navigate = useNavigate();
+    const { theme, changeTheme } = useContext(ThemeContext)
+    const { user, logMeOut } = useAuth() || {};
 
+    const handleLogOut = () => {
+        logMeOut()
+            .then(result => {
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Log Out Successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/');
+            })
+            .catch(error => {
+                alert.error(error);
+            });
+    }
 
     return (
-        <div className="navbar bg-base-100 font-dancing">
+        <div className="navbar bg-white-100 dark:bg-indigo-900 dark:text-white  font-dancing">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -35,21 +54,59 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal px-1">
                     <li><NavLink to='/'>Home</NavLink></li>
                     <li><NavLink to='/allspot'>All Tourists Spot</NavLink></li>
-                    <li><NavLink to='/addspot'>Add Tourists Spot</NavLink></li>
-                    <li><NavLink to='/mylist'>My List</NavLink></li>
-                    <li><NavLink to='/login'>Login</NavLink></li>
-                    <li><NavLink to='/register'>Register</NavLink></li>
+                    {
+                        (user && user?.email) && (<>
+                            <li><NavLink to='/addspot'>Add Tourists Spot</NavLink></li>
+                            <li><NavLink to='/mylist'>My List</NavLink></li>
+                        </>)
+                    }
+
+                    {
+                        !user && (<>
+                            <li><NavLink to='/login'>Login</NavLink></li>
+                            <li><NavLink to='/register'>Register</NavLink></li>
+                        </>)
+                    }
+
                 </ul>
             </div>
             <div className="navbar-end gap-4">
                 <label htmlFor="Toggle1" className="inline-flex items-center space-x-4 cursor-pointer dark:text-gray-800">
                     <span className="relative">
-                        <input id="Toggle1" type="checkbox" className="hidden peer" />
+                        <input id="Toggle1"
+                            defaultChecked={theme}
+                            type="checkbox" className="hidden peer" onChange={changeTheme} />
                         <div className="w-10 h-6 rounded-full shadow-inner dark:bg-gray-600 peer-checked:dark:bg-violet-600"></div>
                         <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-gray-100"></div>
                     </span>
                 </label>
-                <Link to='/login' className="btn">Login</Link>
+                {
+                    (!user && !user?.email) && <Link to='/login' className="btn">Login</Link>
+                }
+
+
+
+                {
+                    (user && user?.email) && (<>
+                        <div className="dropdown dropdown-end" title={user?.email}>
+                            <div tabIndex={0} role="button" className="btn m-1">
+                                <div className="avatar online">
+                                    <div className="w-8 rounded-full">
+                                        <img src={user?.photoURL} />
+                                    </div>
+                                </div>
+                                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li onClick={handleLogOut}><a>Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </>)
+                }
+
+
+
+
+
 
             </div>
         </div>

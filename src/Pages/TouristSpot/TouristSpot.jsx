@@ -1,19 +1,41 @@
-import { useLoaderData } from "react-router-dom";
 import SpotCard from "../../Components/SpotCard";
+import { useEffect, useState } from "react";
 
 const TouristSpot = () => {
-    const addSpot = useLoaderData()
+    let [addSpot, setAddSpot] = useState([])
+    const getAllSpot = (sortBy = null) => {
+        fetch(`http://localhost:5000/allspot${sortBy ? '?sort_by=' + sortBy : ''}`)
+            .then((res) => {
+                return res.json()
+            })
+            .then((data) => {
+                setAddSpot(data)
+            })
+    }
+    useEffect(() => {
+        getAllSpot()
+    }, [])
+
+
     return (
         <>
             <div>
-                <h1 className="md:text-5xl text-2xl font-bold text-center"> Southeast Asia</h1>
+                <div className="item-center">
+                    <h1 className="md:text-5xl text-2xl font-bold text-center"> Southeast Asia</h1>
+                    <select className="select select-bordered join-item md:ml-10 text-center " onChange={(e) => getAllSpot(e.target.value)}>
+                        <option disabled selected>Filter</option>
+                        <option value="desc">Low to High Price</option>
+                        <option value='asc'>High to Low Price</option>
+
+                    </select>
+                </div>
                 <div className="grid md:grid-cols-3 my-5 px-5 gap-5">
-                {
-                    addSpot.map(spot => <SpotCard
-                        key={addSpot._id}
-                        spot={spot}>
-                    </SpotCard>)
-                }
+                    {
+                        addSpot && addSpot?.map(spot => <SpotCard key={addSpot._id}
+                            spot={spot}
+                        />)
+                    }
+
                 </div>
             </div>
         </>

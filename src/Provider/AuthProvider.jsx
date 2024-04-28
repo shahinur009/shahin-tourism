@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState, } from "react";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import app from "../firebase/frebas.config";
 
 const auth = getAuth(app);
@@ -16,13 +16,23 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
     }
+    const logInUser = (email, password) => {
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+    const logMeOut = (email, password) => {
+        setLoading(true);
+        return signOut(auth)
+    }
 
 
     useEffect(()=>{
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user)
-            } 
+            }else{
+                setUser(null)
+            }
           });
 
     },[])
@@ -31,6 +41,8 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         createUser,
+        logInUser,
+        logMeOut
     }
     return (
         <AuthContext.Provider value={authInfo}>

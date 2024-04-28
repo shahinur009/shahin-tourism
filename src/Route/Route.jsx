@@ -7,6 +7,8 @@ import Login from "../Components/Login.jsx";
 import AddTouristSpot from "../Components/AddTouristSpot.jsx";
 import TouristSpot from "../Pages/TouristSpot/TouristSpot.jsx";
 import Users from "../Components/Users.jsx";
+import MyListsx from "../Components/MyList.jsx";
+import PrivateRoute from "./shared/PrivateRoute.jsx";
 
 const router = createBrowserRouter([
     {
@@ -24,11 +26,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '/user',
-                element: <Users></Users>
+                element: <Users></Users>,
+                loader: () => fetch('http://localhost:5000/user')
             },
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/mylist',
+                element: <PrivateRoute><MyListsx /></PrivateRoute>
             },
             {
                 path: '/addspot',
@@ -37,7 +44,6 @@ const router = createBrowserRouter([
             {
                 path: '/allspot',
                 element: <TouristSpot></TouristSpot>,
-                loader: () => fetch('http://localhost:5000/allspot'),
 
             }
 

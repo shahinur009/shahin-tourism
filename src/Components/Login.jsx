@@ -1,8 +1,24 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
-    const handleLogIn = e =>{
+    const { logInUser } = useContext(AuthContext)
+    let navigation = useNavigate()
+    const handleLogIn = e => {
         e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        logInUser(email, password).then((val) => {
+            navigation('/mylist')
+        }).catch((err) => {
+            Swal.fire({
+                title: 'User Credential Not Match',
+                icon: "error",
+            })
+        })
 
     }
     return (
@@ -10,17 +26,17 @@ const Login = () => {
             <div className="w-full max-w-md border-2 p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
                 <h2 className="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
 
-                <form onClick={()=>{handleLogIn}} noValidate="" action="" className="space-y-8">
+                <form onSubmit={handleLogIn} noValidate="" action="" className="space-y-8">
                     <div className="space-y-4">
                         <div className="space-y-2">
                             <label htmlFor="email" className="text-sm">Email address</label>
-                            <input type="email" name="email" id="email" placeholder="leroy@jenkins.com" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                            <input type="email" name="email" placeholder="leroy@jenkins.com" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
                         </div>
                         <div className="space-y-2">
                             <div className="flex justify-between">
                                 <label htmlFor="password" className="text-sm">Password</label>
                             </div>
-                            <input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
+                            <input type="password" name="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600" />
                         </div>
                     </div>
                     <div className="flex items-center w-full my-4">
@@ -45,7 +61,7 @@ const Login = () => {
                     <p className="text-sm text-center dark:text-gray-600">Do not have account?
                         <Link to='/register' rel="noopener noreferrer" className="focus:underline hover:underline text-blue-400 font-semibold"> Register here</Link>
                     </p>
-                    <button type="button" className="w-full btn btn-secondary px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50">Sign in</button>
+                    <button onClick={() => { handleLogIn }} type="submit" className="w-full btn btn-secondary px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50">Sign in</button>
                 </form>
             </div>
         </div>

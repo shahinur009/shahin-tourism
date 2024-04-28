@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 
 const Login = () => {
+    const handleLogIn = e =>{
+        e.preventDefault();
+
+    }
     return (
         <div className="md:pl-[24rem] font-dancing">
             <div className="w-full max-w-md border-2 p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
                 <h2 className="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
 
-                <form noValidate="" action="" className="space-y-8">
+                <form onClick={()=>{handleLogIn}} noValidate="" action="" className="space-y-8">
                     <div className="space-y-4">
                         <div className="space-y-2">
                             <label htmlFor="email" className="text-sm">Email address</label>

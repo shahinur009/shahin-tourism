@@ -6,6 +6,7 @@ import Error from "../ErrorPage/Error.jsx"
 import Login from "../Components/Login.jsx";
 import AddTouristSpot from "../Components/AddTouristSpot.jsx";
 import TouristSpot from "../Pages/TouristSpot/TouristSpot.jsx";
+import Users from "../Components/Users.jsx";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
+                path: '/user',
+                element: <Users></Users>
+            },
+            {
                 path: '/login',
                 element: <Login></Login>
             },
@@ -31,7 +36,9 @@ const router = createBrowserRouter([
             },
             {
                 path: '/allspot',
-                element: <TouristSpot></TouristSpot>
+                element: <TouristSpot></TouristSpot>,
+                loader: () => fetch('http://localhost:5000/allspot'),
+
             }
 
         ]

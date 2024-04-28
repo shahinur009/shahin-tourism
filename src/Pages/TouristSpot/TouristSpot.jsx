@@ -1,17 +1,19 @@
+import { useLoaderData } from "react-router-dom";
+import SpotCard from "../../Components/SpotCard";
 
 const TouristSpot = () => {
+    const addSpot = useLoaderData()
     return (
         <>
-            <div className="flex flex-wrap my-10 px-10">
-                <div className="card card-compact w-96 bg-base-100 shadow-xl">
-                    <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
-                    <div className="card-body">
-                        <h2 className="card-title">Shoes!</h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary">Buy Now</button>
-                        </div>
-                    </div>
+            <div>
+                <h1 className="md:text-5xl text-2xl font-bold text-center"> Southeast Asia</h1>
+                <div className="grid md:grid-cols-3 my-5 px-5 gap-5">
+                {
+                    addSpot.map(spot => <SpotCard
+                        key={addSpot._id}
+                        spot={spot}>
+                    </SpotCard>)
+                }
                 </div>
             </div>
         </>

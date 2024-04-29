@@ -9,7 +9,8 @@ const SpotCard = ({ spot }) => {
                 <figure><img src={image} className="md:h-72 md:w-[22rem] rounded-md" alt="Shoes" /></figure>
                 <div className="p-8">
                     <h2 className="text-center text-xl font-bold">Place Name: {touristSpotName}</h2>
-                    <p> <span className="font-bold">Average Coast:</span> {averageCost}</p>
+                    <p> <span className="font-bold">Average Coast: $</span> {averageCost}</p>
+                    <p> <span className="font-bold">Country Name:</span> {countryName}</p>
                     <div className="flex gap-3">
                     <FaPeopleGroup />
                     <p>{visitor}</p>

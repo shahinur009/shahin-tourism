@@ -1,4 +1,5 @@
 import { FaPeopleGroup } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const SpotCard = ({ spot }) => {
     const { email, name, image, touristSpotName, countryName, location, description, averageCost, seasonality, travelTime, visitor } = spot;
@@ -16,7 +17,8 @@ const SpotCard = ({ spot }) => {
                     <p><span className="font-bold">Travel Time: </span>{travelTime}</p>
                     <p> <span className="font-bold">season:</span>  {seasonality}</p>
                     <div className="w-full justify-center text-center py-3">
-                        <button className="btn btn-primary">View Details</button>
+                        <Link to='/details'>
+                        <button className="btn btn-primary">View Details</button></Link>
                     </div>
                 </div>
             </div>

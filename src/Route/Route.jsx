@@ -9,6 +9,7 @@ import TouristSpot from "../Pages/TouristSpot/TouristSpot.jsx";
 import Users from "../Components/Users.jsx";
 import PrivateRoute from "./shared/PrivateRoute.jsx";
 import MyList from "../Components/MyList.jsx";
+import Details from "../Components/Details.jsx";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,12 @@ const router = createBrowserRouter([
                 element: <PrivateRoute>
                     <MyList/>
                     </PrivateRoute>
+            },
+            {
+                path: '/details',
+                element: <PrivateRoute>
+                    <Details></Details>
+                </PrivateRoute>
             },
             {
                 path: '/addspot',

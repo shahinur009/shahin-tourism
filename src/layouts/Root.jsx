@@ -11,6 +11,7 @@ const Root = () => {
     useEffect(() => {
         document.title = `${import.meta.env.VITE_APP_NAME} - ${getTitle(location.pathname)}`;
     }, [location]);
+    
     function getTitle(pathname) {
         switch (pathname) {
             case '/':

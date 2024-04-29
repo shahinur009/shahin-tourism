@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "../Provider/useAuth";
 import SpotCard from "./SpotCard";
+import MyListCard from "./MyListCard";
 
 
 const MyList = () => {
@@ -20,10 +21,8 @@ const MyList = () => {
                 <h1 className="md:text-5xl text-2xl font-bold text-center"> My List</h1>
                 <div className="grid md:grid-cols-3 my-5 px-5 gap-5">
                     {
-                        myList?.map(spot => <SpotCard
-                            key={spot._id}
-                            spot={spot}>
-                        </SpotCard>)
+                        myList?.map(spot => <MyListCard key={spot._id}
+                            spot={spot}></MyListCard>)
                     }
                 </div>
             </div>

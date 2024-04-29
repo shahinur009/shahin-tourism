@@ -9,7 +9,8 @@ import TouristSpot from "../Pages/TouristSpot/TouristSpot.jsx";
 import Users from "../Components/Users.jsx";
 import PrivateRoute from "./shared/PrivateRoute.jsx";
 import MyList from "../Components/MyList.jsx";
-import Details from "../Components/Details.jsx";
+// import Details from "../Components/Details.jsx";
+import UpdateSpot from "../Components/UpdateSpot.jsx";
 
 const router = createBrowserRouter([
     {
@@ -37,14 +38,21 @@ const router = createBrowserRouter([
             {
                 path: '/mylist',
                 element: <PrivateRoute>
-                    <MyList/>
-                    </PrivateRoute>
-            },
-            {
-                path: '/details',
-                element: <PrivateRoute>
-                    <Details></Details>
+                    <MyList />
                 </PrivateRoute>
+            },
+            // {
+            //     path: '/details/:id',
+            //     element: <PrivateRoute>
+            //         <Details></Details>
+            //     </PrivateRoute>
+            // },
+            {
+                path: '/mylist/update/:id',
+                element: <PrivateRoute>
+                    <UpdateSpot />
+                </PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/allspot/${params.id}`)
             },
             {
                 path: '/addspot',

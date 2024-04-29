@@ -1,11 +1,9 @@
 import Swal from "sweetalert2";
 import useAuth from "../Provider/useAuth";
-import { useContext } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
+
 
 const AddTouristSpot = () => {
     const { user } = useAuth() || {};
-    // const authInfo = useContext(AuthContext)
 
     const handleAddSpot = event => {
         event.preventDefault();

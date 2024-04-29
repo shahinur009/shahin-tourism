@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { FaPeopleGroup } from "react-icons/fa6";
 import Swal from "sweetalert2";
 
 const MyListCard = ({ spot }) => {
-    const { _id, email, name, image, touristSpotName, countryName, location, description, averageCost, seasonality, travelTime, visitor, } = spot;
+    const navigate = useNavigate();
+    const location = useLocation();
+    const { _id, email, name, image, touristSpotName, countryName, description, averageCost, seasonality, travelTime, visitor, } = spot;
 
     const handleDelete = _id => {
         console.log(_id)
@@ -17,7 +19,7 @@ const MyListCard = ({ spot }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/allspot/${_id}`, {
+                fetch(`http://localhost:5000/delete/${_id}`, {
                     method: "DELETE",
 
                 })
@@ -35,6 +37,7 @@ const MyListCard = ({ spot }) => {
                             }
                         }
                     })
+                navigate(location?.state ? location.state : '/allspot')
             }
         });
 

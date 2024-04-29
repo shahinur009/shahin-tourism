@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import useAuth from "../Provider/useAuth";
-import SpotCard from "./SpotCard";
 import MyListCard from "./MyListCard";
 
 

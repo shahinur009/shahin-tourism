@@ -1,10 +1,12 @@
-import SpotCard from "../../Components/SpotCard";
 import { useEffect, useState } from "react";
+import SpotCard from "./SpotCard";
 
-const TouristSpot = () => {
+const TouristSpotSection = () => {
     let [addSpot, setAddSpot] = useState([])
-    const getAllSpot = (sortBy = null) => {
-        fetch(`http://localhost:5000/allspot${sortBy ? '?sort_by=' + sortBy : ''}`)
+    const getAllSpot = (countryName) => {
+        fetch(`http://localhost:5000/allspot?limit=6${
+            countryName?'&country_name='+countryName:""
+        }`)
             .then((res) => {
                 return res.json()
             })
@@ -15,8 +17,6 @@ const TouristSpot = () => {
     useEffect(() => {
         getAllSpot()
     }, [])
-
-
     return (
         <>
             <div>
@@ -24,8 +24,8 @@ const TouristSpot = () => {
                     <h1 className="md:text-5xl text-2xl font-bold text-center"> Southeast Asia</h1>
                     <select className="select select-bordered join-item md:ml-10 text-center " onChange={(e) => getAllSpot(e.target.value)}>
                         <option disabled selected>sort</option>
-                        <option value="desc">Low to High Price</option>
-                        <option value='asc'>High to Low Price</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value='Thailand'>Thailand</option>
 
                     </select>
                 </div>
@@ -42,4 +42,4 @@ const TouristSpot = () => {
     );
 };
 
-export default TouristSpot;
+export default TouristSpotSection;

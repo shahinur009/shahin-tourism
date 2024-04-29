@@ -21,6 +21,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+                
             },
             {
                 path: '/register',
@@ -44,15 +45,22 @@ const router = createBrowserRouter([
             {
                 path: '/details/:id',
                 element: <PrivateRoute>
-                    <Details></Details>
-                </PrivateRoute>
+                    <Details/>
+                </PrivateRoute>,
+                loader: ({ params }) => {
+                    console.log(params)
+                    return fetch(`http://localhost:5000/mylist/edit/${params.id}`)
+                },
             },
             {
-                path: '/mylist/update/:id',
+                path: 'mylist/update/:id',
                 element: <PrivateRoute>
                     <UpdateSpot />
                 </PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/allspot/${params.id}`)
+                loader: ({ params }) => {
+                    console.log(params)
+                    return fetch(`http://localhost:5000/mylist/edit/${params.id}`)
+                }
             },
             {
                 path: '/addspot',

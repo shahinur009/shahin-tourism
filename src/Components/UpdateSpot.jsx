@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../Provider/useAuth";
 import Swal from "sweetalert2";
 
@@ -6,8 +6,11 @@ import Swal from "sweetalert2";
 const UpdateSpot = () => {
     const { user } = useAuth() || {};
     const spot = useLoaderData();
-    console.log(spot)
-    const { email, name, image, touristSpotName, countryName, location, description, averageCost, seasonality, travelTime, visitor } = spot;
+    const navigate=useNavigate()
+    if(!spot && !spot?.data){
+navigate('/')
+    }
+    const { email, name, image, touristSpotName, countryName, location, description, averageCost, seasonality, travelTime, visitor,_id } = spot?.data;
 
     const handleUpdateSpot = event => {
         event.preventDefault();
@@ -30,7 +33,7 @@ const UpdateSpot = () => {
         console.log(updatedSpot)
 
         // send data to the server
-        fetch(`http://localhost:5000/update/${_id}`, {
+        fetch(`http://localhost:5000/mylist/update/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -40,7 +43,7 @@ const UpdateSpot = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                if (data.modifiedCount > 0) {
+                if (data.status) {
                     Swal.fire({
                         position: "top-center",
                         icon: "success",
@@ -48,6 +51,7 @@ const UpdateSpot = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    navigate('/allspot')
                 }
             })
 
@@ -125,9 +129,9 @@ const UpdateSpot = () => {
 
                     </fieldset>
                     <div className="items-center text-center">
-                        <Link to='/allspot'>
+                        {/* <Link to='/allspot'> */}
                             <input type="submit" value="Updated Information" className="btn btn-success lg:-ml-32 w-1/2 items-center"></input>
-                        </Link>
+                        {/* </Link> */}
                     </div>
                 </form>
 

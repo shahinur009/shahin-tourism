@@ -3,7 +3,7 @@ import useAuth from "../Provider/useAuth";
 import SpotCard from "./SpotCard";
 
 
-const MyListsx = () => {
+const MyList = () => {
     const { user } = useAuth() || {};
     let [myList, setMyList] = useState([]);
     useEffect(() => {
@@ -31,4 +31,4 @@ const MyListsx = () => {
     )
 };
 
-export default MyListsx;
+export default MyList;

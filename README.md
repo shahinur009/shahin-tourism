@@ -9,10 +9,10 @@
 7. react icon
 8. dotenv
 
-* implement 3 packages:
-1. 
+* implement 2 packages:
+1.  lottie-react
 2. 
-3. 
+
 
 
 * Features

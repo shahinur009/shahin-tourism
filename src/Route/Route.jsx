@@ -30,7 +30,7 @@ const router = createBrowserRouter([
             {
                 path: '/user',
                 element: <Users></Users>,
-                loader: () => fetch('http://localhost:5000/user')
+                loader: () => fetch('https://shahin-tourism-server.vercel.app/user')
             },
             {
                 path: '/login',
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
                 </PrivateRoute>,
                 loader: ({ params }) => {
                     console.log(params)
-                    return fetch(`http://localhost:5000/mylist/edit/${params.id}`)
+                    return fetch(`https://shahin-tourism-server.vercel.app/mylist/edit/${params.id}`)
                 },
             },
             {
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
                 </PrivateRoute>,
                 loader: ({ params }) => {
                     console.log(params)
-                    return fetch(`http://localhost:5000/mylist/edit/${params.id}`)
+                    return fetch(`https://shahin-tourism-server.vercel.app/mylist/edit/${params.id}`)
                 }
             },
             {

@@ -26,7 +26,7 @@ const AddTouristSpot = () => {
         console.log(newSpot)
 
         // send data to the server
-        fetch('http://localhost:5000/addspot', {
+        fetch('https://shahin-tourism-server.vercel.app/addspot', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

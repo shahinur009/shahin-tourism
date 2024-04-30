@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const CountryCard = () => {
     const [country, setCountry] = useState([]);
     const countryData = () => {
-        fetch(`http://localhost:5000/countrydata`)
+        fetch(`https://shahin-tourism-server.vercel.app/countrydata`)
             .then(res => res.json())
             .then(data => {
                 setCountry(data);

@@ -35,7 +35,7 @@ const Register = () => {
                 console.log(result.user)
                 navigate(location?.state ? location.state : '/allspot')
                 const user = { email };
-                fetch('http://localhost:5000/user', {
+                fetch('https://shahin-tourism-server.vercel.app/user', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

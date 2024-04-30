@@ -15,8 +15,8 @@ Website live URL: https://shahin-tourism.web.app
 8. dotenv
 
 * implement 2 packages:
-1.  lottie-react
-2. 
+1. lottie-react
+2. react Typewriter
 
 
 

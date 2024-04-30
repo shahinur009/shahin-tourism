@@ -33,7 +33,7 @@ navigate('/')
         console.log(updatedSpot)
 
         // send data to the server
-        fetch(`http://localhost:5000/mylist/update/${_id}`, {
+        fetch(`https://shahin-tourism-server.vercel.app/mylist/update/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

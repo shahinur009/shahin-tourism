@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const TouristSpot = () => {
     let [addSpot, setAddSpot] = useState([])
     const getAllSpot = (sortBy = null) => {
-        fetch(`http://localhost:5000/allspot${sortBy ? '?sort_by=' + sortBy : ''}`)
+        fetch(`https://shahin-tourism-server.vercel.app/allspot${sortBy ? '?sort_by=' + sortBy : ''}`)
             .then((res) => {
                 return res.json()
             })

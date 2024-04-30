@@ -4,7 +4,7 @@ import SpotCard from "./SpotCard";
 const TouristSpotSection = () => {
     let [addSpot, setAddSpot] = useState([])
     const getAllSpot = (countryName) => {
-        fetch(`http://localhost:5000/allspot?limit=6${
+        fetch(`https://shahin-tourism-server.vercel.app/allspot?limit=6${
             countryName?'&country_name='+countryName:""
         }`)
             .then((res) => {

@@ -103,8 +103,9 @@ const Navbar = () => {
                                         <div className="w-8 rounded-full">
                                             <img src={user?.photoURL} />
                                         </div>
-                                    </div>
-                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                    </div>                                    
+                                    <ul tabIndex={0} className="dropdown-content z-[999] menu p-2 shadow bg-base-100 rounded-box w-60">
+                                        <li><a>{user?.email}</a></li>
                                         <li onClick={handleLogOut}><a>Logout</a></li>
                                     </ul>
                                 </div>

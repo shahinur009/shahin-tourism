@@ -31,7 +31,7 @@ const TouristSpot = () => {
                 </div>
                 <div className="grid md:grid-cols-3 my-5 px-5 gap-5">
                     {
-                        addSpot && addSpot?.map(spot => <SpotCard key={addSpot._id}
+                        addSpot && addSpot?.map(spot => <SpotCard key={spot._id}
                             spot={spot}
                         />)
                     }

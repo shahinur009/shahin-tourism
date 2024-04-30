@@ -1,6 +1,5 @@
 import LottieReact from "./LottieReact";
-import TypeWritter from "./TypeWritter";
-import { useTypewriter, Cursor } from "react-simple-typewriter";
+import { useTypewriter } from "react-simple-typewriter";
 
 const Address = () => {
     const [typeEffect] = useTypewriter({

@@ -6,18 +6,18 @@ import Swal from "sweetalert2";
 const UpdateSpot = () => {
     const { user } = useAuth() || {};
     const spot = useLoaderData();
-    const navigate=useNavigate()
-    if(!spot && !spot?.data){
-navigate('/')
+    const navigate = useNavigate()
+    if (!spot && !spot?.data) {
+        navigate('/')
     }
-    const { email, name, image, touristSpotName, countryName, location, description, averageCost, seasonality, travelTime, visitor,_id } = spot?.data;
+    const { email, name, image, touristSpotName, countryName, location, description, averageCost, seasonality, travelTime, visitor, _id } = spot?.data;
 
     const handleUpdateSpot = event => {
         event.preventDefault();
 
         const form = event.target;
         // const email = user.email;
-        const email= form.email.value;
+        const email = form.email.value;
         const name = form.name.value;
         const image = form.image.value;
         const touristSpotName = form.touristspotname.value;
@@ -130,7 +130,7 @@ navigate('/')
                     </fieldset>
                     <div className="items-center text-center">
                         {/* <Link to='/allspot'> */}
-                            <input type="submit" value="Updated Information" className="btn btn-success lg:-ml-32 w-1/2 items-center"></input>
+                        <input type="submit" value="Updated Information" className="btn btn-success lg:-ml-32 w-1/2 items-center"></input>
                         {/* </Link> */}
                     </div>
                 </form>

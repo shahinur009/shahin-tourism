@@ -11,6 +11,7 @@ import PrivateRoute from "./shared/PrivateRoute.jsx";
 import MyList from "../Components/MyList.jsx";
 import Details from "../Components/Details.jsx";
 import UpdateSpot from "../Components/UpdateSpot.jsx";
+import CountryDetails from "../Components/CountryDetails.jsx";
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,16 @@ const router = createBrowserRouter([
                 element: <Users></Users>,
                 loader: () => fetch('https://shahin-tourism-server.vercel.app/user')
             },
+            {
+                path: '/country/details/:id',
+                element: <CountryDetails></CountryDetails>,
+                loader: ({ params }) => {
+                    console.log(params.id)
+                    return fetch(`https://shahin-tourism-server.vercel.app/country/details/${params.id}`)
+                },
+                
+            },
+
             {
                 path: '/login',
                 element: <Login></Login>

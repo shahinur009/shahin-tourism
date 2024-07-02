@@ -1,5 +1,3 @@
-B9 A10 Type-01 Requirements:
-
 website Name: Shahin Tourism
 Website live URL: https://shahin-tourism.web.app
 
@@ -33,9 +31,10 @@ Website live URL: https://shahin-tourism.web.app
 10. Delete Route.
  
  * Links
- 1. GithubLink-Server: https://github.com/programming-hero-web-course-4/b9a10-server-side-shahinur009
- 
- 2. GithubLink-Client: https://github.com/programming-hero-web-course-4/B9A10-client-side-shahinur009
- 
- 3. FirebaseLink: https://shahin-tourism.web.app/
+ 1. FirebaseLink: https://shahin-tourism.web.app/
+
+git clone please install below mentioned npm:
+1. npm i
+2. npm run dev
+3. npm run build
  
